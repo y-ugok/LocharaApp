@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        height: 80%;
+        width: 80%;
+      }
+    </style>
+  </head>
+  <body @vue:mounted="initMap">
+    <h1>場所を選択してね！</h1>
+    <ul>
+      <li>緯度：{{lat}}</li>
+      <li>経度：{{lon}}</li>
+    </ul>
+    <div id="map"></div>
+
+    <h2>キャラクター情報を取得</h2>
+
+    <button @click="getResource">確定</button>
+    <table v-if="data">
+      <tr v-for="item in data.result">
+        <td><img :src="item.image_full" width="50%" /></td>
+        <td>名前：{{item.name}}</td>
+        <td>場所：{{item.location}}</td>
+        <td>所属：{{item.belong}}</td>
+
+        <td>プロフィール{{item.profile}}</td>
+      </tr>
+    </table>
+    <script src="https://unpkg.com/petite-vue"></script>
+    <script src="map.js"></script>
+  </body>
+</html>
